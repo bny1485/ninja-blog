@@ -8,5 +8,15 @@
 <body>
     <h1>article template</h1>
     <p>this is article template page</p>
+    <hr>
+    <div class="articles">
+        {% for article in articles %} <!-- python code -->
+        <div class="article">
+            <h2><a href="#"> {{ article.title }} <!-- out put data --> </a></h2>
+            <p> {{ article.body }} </p>
+            <p> {{ article.date }} </p>
+        </div>
+        {% endfor %}
+    </div>
 </body>
 </html>
