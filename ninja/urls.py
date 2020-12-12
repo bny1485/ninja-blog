@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
-
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from . import views
 
 urlpatterns = [
@@ -10,3 +10,6 @@ urlpatterns = [
     path(r'about/', views.about),
     url(r'', views.home),
 ]
+
+
+urlpatterns += staticfiles_urlpatterns()
