@@ -12,8 +12,10 @@
 
 <body>
     <div class="wrapper">
+        <h1><a href="{% url 'articles:list_article' %}"><img src="{% static 'ZI-NET.png' %}" alt="ZI~NET"
+                    style="height: 60px;" /></a></h1>
         {% block content %}
-            
+
         {% endblock %}
     </div>
 </body>

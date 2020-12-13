@@ -9,8 +9,7 @@
     {% for article in articles %}
     <!-- python code -->
     <div class="article">
-        <h2><a href="#"> {{ article.title }}
-                <!-- out put data --> </a></h2>
+        <h2><a href="{% url 'articles:datail_article' slug=article.slug %}"> {{ article.title }} <!-- out put data --> </a></h2>
         <p> {{ article.snippet }} </p>
         <p> {{ article.date }} </p>
     </div>
