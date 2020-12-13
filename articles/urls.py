@@ -5,5 +5,6 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'', views.article),
+    path('', views.article_list),
+    path('<slug>/', views.article_detail),
 ]
