@@ -1,0 +1,13 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+<!-- html code here -->
+<div class="article-detail">
+    <div class="article">
+        <p>this is article details page !! </p>
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.body }}</p>
+        <p>{{ article.date }}</p>
+    </div>
+</div>
+{% endblock %}

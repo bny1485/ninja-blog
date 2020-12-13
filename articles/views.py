@@ -10,4 +10,6 @@ def article_list(request):
 
 
 def article_detail(request, slug):
-    return HttpResponse(slug)
+    article = Article.objects.get(slug=slug)
+    context = {'article': article}
+    return render(request, 'article_detail.html', context)
