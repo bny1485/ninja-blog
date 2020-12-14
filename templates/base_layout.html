@@ -11,11 +11,24 @@
 </head>
 
 <body>
-    <div class="wrapper">
+    <header class="wrapper">
         <h1><a href="{% url 'articles:list_article' %}"><img src="{% static 'ZI-NET.png' %}" alt="ZI~NET"
                     style="height: 60px;" /></a></h1>
+        <nav>
+            <ul>
+                <li>
+                    <form class="logout-link" action="{% url 'accounts:logout'%}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">
+                            logout
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="wrapper">
         {% block content %}
-
         {% endblock %}
     </div>
 </body>
