@@ -24,7 +24,10 @@ def login_views(request):
             # login user
             user = form.get_user()
             login(request, user)
-            return redirect("articles:list_article")
+            if 'next' in request.POST:
+                return redirect(request.POST.get('next'))
+            else:
+                return redirect("articles:list_article")
     else:
         form = AuthenticationForm()
     return render(request, 'accounts/login.html', {'form': form})

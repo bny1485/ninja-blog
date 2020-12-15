@@ -16,6 +16,6 @@ def article_detail(request, slug):
     return render(request, 'articles/article_detail.html', context)
 
 
-@login_required(login_url='/accounts/login/ ')
+@login_required(login_url='/accounts/login/')
 def article_create(request):
     return render(request, 'articles/article_create.html')
