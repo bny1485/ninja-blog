@@ -7,7 +7,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>article</title>
+    <link rel="stylesheet" href="{% static 'site-forms.css' %}">
     <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'layout.css' %}">
 </head>
 
 <body>
@@ -26,7 +28,7 @@
                     </form>
                 </li>
                 <li>
-                    <a href="{% url 'articles:create_article' %}">create new article</a>
+                    <a class="highlight" href="{% url 'articles:create_article' %}">create new article</a>
                 </li>
                 {% else %}
                 <li>
