@@ -12,6 +12,8 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('about/', views.about),
     path('', views.home),
+    # api
+    path('api/articles/', include('articles.api.urls', 'blog_api')),
 ]
 
 
