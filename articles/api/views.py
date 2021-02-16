@@ -5,6 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.generics import ListAPIView
 from rest_framework.authentication import TokenAuthentication
+from rest_framework.filters import SearchFilter, OrderingFilter
 
 from django.contrib.auth.models import User
 from articles.models import Article
@@ -82,9 +83,12 @@ def api_create_view(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class ApiBlogListView(ListAPIView):
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated, )
     pagination_class = PageNumberPagination
+    filter_backends = (SearchFilter, OrderingFilter)
+    Search_fields = ('title', 'body', 'author__username')
