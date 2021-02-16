@@ -2,6 +2,9 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.generics import ListAPIView
+from rest_framework.authentication import TokenAuthentication
 
 from django.contrib.auth.models import User
 from articles.models import Article
@@ -32,7 +35,7 @@ def api_update_view(request, slug):
 
     user = request.user
     if blog_post.author != user:
-        return Response({'response':"You don't have permission to edit."})
+        return Response({'response': "You don't have permission to edit."})
 
     if request.method == 'PUT':
         serializer = ArticleSerializer(blog_post, data=request.data)
@@ -55,8 +58,7 @@ def api_delete_view(request, slug):
 
     user = request.user
     if blog_post.author != user:
-        return Response({'response':"You don't have permission to delete."})
-
+        return Response({'response': "You don't have permission to delete."})
 
     if request.method == "DELETE":
         operation = blog_post.delete()
@@ -79,3 +81,10 @@ def api_create_view(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class ApiBlogListView(ListAPIView):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated, )
+    pagination_class = PageNumberPagination
